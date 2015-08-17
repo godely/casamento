@@ -1,0 +1,37 @@
+{
+  "name": "thagui",
+  "main": "server.js",
+  "dependencies": {
+    "async": "^1.4.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "~1.4.2",
+    "connect": "~2.14.4",
+    "connect-form": "~0.2.1",
+    "cookie-parser": "~1.0.1",
+    "express": "~4.5.1",
+    "method-override": "~2.0.2",
+    "mongoose": "~3.8.0",
+    "optimist": "^0.6.1",
+    "serve-favicon": "^2.2.0",
+    "sha1": "~1.1.0",
+    "simple-oauth2": "~0.2.1",
+    "underscore": "^1.8.3",
+    "underscore.string": "^3.1.1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-bower": "^0.18.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-cssmin": "^0.12.2",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-uglify": "~0.5.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-express-server": "^0.5.1",
+    "grunt-html2js": "~0.2.7",
+    "grunt-jsbeautifier": "^0.2.10",
+    "grunt-nodemon": "^0.4.0",
+    "grunt-usemin": "^3.0.0"
+  }
+}
