@@ -2,7 +2,10 @@
   "name": "angular",
   "version": "1.0.0",
   "dependencies": {
-    "materialize": "~0.97.0"
+    "materialize": "~0.97.0",
+    "angular": "~1.4.4",
+    "angular-ui-notification": "~0.0.14",
+    "angular-resource": "~1.4.4"
   },
   "resolutions": {
     "angular": "1.3.15"

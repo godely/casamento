@@ -22,5 +22,20 @@ body {
 }
 
 #sidenav a {
-  color: #aaa;
+  color: #444;
+}
+
+.sidenavbar {
+  -webkit-border-bottom-right-radius: 30px;
+  -moz-border-radius-bottomright: 30px;
+  border-bottom-right-radius: 30px;
+  background-color:white;
+  z-index:10000;
+  opacity: 0.8;
+  padding-right: 20px;
+}
+
+.giftcard {
+  height: 400px;
+  position: relative;
 }

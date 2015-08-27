@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<base href="/">
+
+	<title>Thaís e Guilherme</title>
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,300italic,300,600italic,700italic,600,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' type='text/css'>
+
+	<!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css" />
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+  <script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers/AdminCtrl.js"></script>
+  <script src="js/controllers/GiftsCtrl.js"></script>
+  <script src="js/services/AdminService.js"></script>
+  <script src="js/services/GlobalService.js"></script>
+  <!--<script src="js/HomeCtrl.js"></script>
+  <script src="js/HomeService.js"></script>-->
+</head>
+<body ng-app="thaguiApp">
+	<div ng-controller="AdminController">
+    <div class="section white scrollspy">
+      <div class="row container">
+      <h2 class="header">Adicione um Presente</h2>
+        <form>
+          <div class="row">
+            <div class="col s6">
+              <input ng-model="gift.name" id="buttonname" type="text" class="validate">
+              <label for="buttonname">Nome do Presente</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              <input ng-model="gift.url" id="buttonurl" type="text" class="validate">
+              <label for="buttonurl">URL da foto</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              <input type="text" id="ebuttoncategory" ng-model="egift.category" typeahead="category for category in categories">
+              <label for="buttoncategory">Categoria</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              <input type="number" ng-model="gift.value" id="buttonvalue" class="validate">
+              <label for="buttonvalue">Valor (numérico, sem vírgulas)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              <input type="text" ng-model="gift.code" id="buttoncode" class="materialize-textarea">
+              <label for="buttoncode">Código do botão</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              <input ng-model="gift.password" id="buttonpassword" type="text" class="validate">
+              <label for="buttonpassword">Senha</label>
+            </div>
+          </div>
+          <div>
+            <a ng-click="createGift()" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="fancy-border"></div>
+
+    <div class="section white">
+      <div class="row container presents">
+        <h2 class="header">Presentes</h2>
+        <div class="col s12 m3 giftcard" ng-repeat="g in gifts">
+          <h5 class="light">{{g.name}}</h5>
+          <h5>R${{g.value}}</h5>
+          <div style="top: 100px; position: absolute;">
+            <div style="height: 220px;">
+              <img ng-src="{{g.url}}" style="max-width:100%; max-height:100%; padding-top: 20px">
+            </div>
+            <button ng-click="editGift(g)" class="btn waves-effect waves-light modal-trigger">Editar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal bottom-sheet">
+      <div class="modal-content">
+        <h4>Editar Presente</h4>
+        <form>
+          <div class="row">
+            <div class="col s6">
+              <input ng-model="egift.bought" id="ebuttonbought" type="checkbox" class="validate">
+              <label for="ebuttonbought">Foi comprado?</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              <input ng-model="egift.name" id="ebuttonname" type="text" class="validate">
+              <label for="ebuttonname">Nome do Presente</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              <input ng-model="egift.url" id="ebuttonurl" type="text" class="validate">
+              <label for="ebuttonurl">URL da foto</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              <!--<input ng-model="egift.category" id="ebuttoncategory" type="text" class="validate">-->
+              <input type="text" id="ebuttoncategory" ng-model="egift.category" typeahead="category for category in categories">
+              <label for="ebuttoncategory">Categoria</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              <input type="number" ng-model="egift.value" id="ebuttonvalue" class="validate">
+              <label for="ebuttonvalue">Valor (numérico, sem vírgulas)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              <input type="text" ng-model="egift.code" id="ebuttoncode" class="materialize-textarea">
+              <label for="ebuttoncode">Código do botão</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              <input ng-model="egift.password" id="ebuttonpassword" type="text" class="validate">
+              <label for="ebuttonpassword">Senha</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button ng-click="removeGift()" class="modal-action modal-close waves-effect waves-red btn-flat">Excluir</button>
+        <button ng-click="edit()" class="modal-action modal-close waves-effect waves-green btn-flat">Editar</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="bower_components/materialize/dist/js/materialize.min.js"></script>
+
+</body>
+</html>
