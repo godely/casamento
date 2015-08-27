@@ -6,7 +6,7 @@ module.exports = function(app) {
   app.get('/api/gift/add', function(req, res) {
     var gift = req.query;
     if (gift.password != PASS) {
-      return res.json({msg: "Senha inválida!"});
+      return res.json({msg: "Senha inválida!", err: true});
     }
     var gift = new Gift({
       name: gift.name,
@@ -39,7 +39,7 @@ module.exports = function(app) {
   app.get('/api/gift/edit', function(req, res) {
     var query = req.query;
     if (query.password != PASS) {
-      return res.json({msg: "Senha inválida!"});
+      return res.json({msg: "Senha inválida!", err: true});
     }
     Gift.findById(query._id).exec().then(function(gift) {
       gift.name = query.name;

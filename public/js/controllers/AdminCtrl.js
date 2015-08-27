@@ -10,10 +10,12 @@ app.controller('AdminController', [
 		$scope.createGift = function() {
       admin.addGift($scope.gift).then(function(data) {
         Notification(data.msg);
-        var pass = $scope.gift.password;
-        $scope.gift = {};
-        $scope.gift.password = pass;
-        $scope.gifts.push(data.obj);
+        if (!data.err) {
+          var pass = $scope.gift.password;
+          $scope.gift = {};
+          $scope.gift.password = pass;
+          $scope.gifts.push(data.obj);
+        }
       });
     };
 
