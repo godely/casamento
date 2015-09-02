@@ -1,4 +1,6 @@
 var Gift = require('./models/gift');
+var Depo = require('./models/depo');
+var RSVP = require('./models/rsvp');
 const PASS = 'guitha';
 
 module.exports = function(app) {
@@ -51,6 +53,22 @@ module.exports = function(app) {
       gift.save(function() {
         return res.json({msg: "Presente editado!"});
       });
+    });
+  });
+
+  app.get('/api/rsvp/add', function(req, res) {
+    var query = req.query;
+    var rsvp = new RSVP(query);
+    rsvp.save(function() {
+      return res.json({msg: "Confirmação enviada para Thaís e Guilherme!"});
+    });
+  });
+
+  app.get('/api/depo/add', function(req, res) {
+    var query = req.query;
+    var depo = new Depo(query);
+    depo.save(function(err, depo) {
+      return res.json({msg: "Depoimento enviado para Thaís e Guilherme! Eles vão dar uma olhadinha e deve aparecer aqui no site logo logo :)"});
     });
   });
 

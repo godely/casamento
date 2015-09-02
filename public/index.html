@@ -23,9 +23,14 @@
   <script src="bower_components/angular-resource/angular-resource.min.js"></script>
   <script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="bower_components/lodash/lodash.min.js"></script>
+  <script src='bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
   <script src="js/app.js"></script>
   <script src="js/controllers/AdminCtrl.js"></script>
+  <script src="js/controllers/DepoCtrl.js"></script>
   <script src="js/controllers/GiftsCtrl.js"></script>
+  <script src="js/controllers/RSVPCtrl.js"></script>
+  <script src="js/controllers/WeddingCtrl.js"></script>
   <script src="js/services/AdminService.js"></script>
   <script src="js/services/GlobalService.js"></script>
   <!--<script src="js/HomeCtrl.js"></script>
@@ -54,8 +59,9 @@
   <div id="thaiseguilherme" class="section scrollspy white">
     <div class="row container">
       <h2 class="header">thaís e guilherme</h2>
-      <p class="grey-text text-darken-3 lighten-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor at tellus nec porttitor. Suspendisse bibendum molestie purus id porttitor. Aliquam semper ante vel vehicula sollicitudin. Sed pharetra quam tempor orci mollis auctor. Cras turpis purus, ullamcorper rhoncus dui eu, sollicitudin rhoncus ipsum. Mauris vestibulum felis quis nibh accumsan efficitur. Curabitur a augue ante. Nulla semper bibendum augue. Ut et dolor velit. Vestibulum quis enim id leo ullamcorper placerat. Sed interdum, diam elementum ultrices aliquam, lacus lorem aliquam neque, in sagittis libero mauris quis nulla.</p>
+      <p class="grey-text text-darken-3 lighten-3" style="text-align: justify;">No dia 16/10/2005, durante um show de Los Hermanos, Guilherme me pediu em namoro. Éramos tão novinhos... Desde esse dia tão especial eu tenho meu companheiro sempre ao meu lado. No começo do namoro, ele até ficava mais tarde depois de sua aula e perdia a carona só pra me ver cinco minutinhos enquanto não começava a minha. Foram muitos encontros de porta de colégio. Fomos crescendo e veio a faculdade, aí foi a minha vez de ir para o laboratório pela noite só pra te acompanhar e ver o melhor aluno de economia de todos. Uma pausa nos estudos para realizar um momento mágico em nossas vidas, um intercâmbio no mediterrâneo. Agradecimento eterno aos nossos pais por nos proporcionar tamanha emoção. Durante esses (quase) dez anos juntos, fomos abençoados com muitas alegrias, a maior de todas aconteceu em Outubro de 2014, quando fui pedida em casamento num lindo pôr do sol em Olinda, um dia antes da minha viagem para conhecer os pinguins, outra paixão antiga. A emoção foi tão grande que mal consegui dizer sim. Agora falta bem pouquinho para realização de mais um sonho: mais um sim nas nossas vidas. É com muito amor e felicidade que vamos comemorar nossos 10 anos de namoro e as primeiras horinhas de casados ao lado de vocês, em uma cerimônia intimista para nossos familiares, amigos próximos, e pessoas queridas! Obrigada por fazerem parte de nossa história. Esperamos muito a presença de todos! Guilherminho, eu te amo, obrigada por tudo!</p>
       
+      <!--
       <div class="row depoiments" style="visibility: hidden;">
 	      <div class="col s12 m4">
 	        <div class="card-panel teal">
@@ -79,23 +85,27 @@
 	        </div>
 	      </div>
 	    </div>
+      -->
 
-	    <ul class="collapsible">
-		    <li>
-		    	<div style="position: relative">
-				    <form>
-			        <div style="position: absolute; right: 20px;">
-				        <a class="btn-floating btn-medium waves-effect waves-light red"><i class="material-icons">add</i></a>
-				      </div>
-			        <div class="input-field" style="padding: 10px 20px 0 20px;">
-			          <i class="material-icons prefix">mode_edit</i>
-			          <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-			          <label for="icon_prefix2">Conte uma história sobre Guilherme e Thaís</label>
-			        </div>
-				    </form>
-				  </div>
-		    </li>
-		  </ul>
+        <div class="card" ng-controller="DepoController">
+          <form>
+            <div class="input-field" style="padding: 20px;">
+              <i class="material-icons prefix">mode_edit</i>
+              <textarea id="icon_prefix2" class="materialize-textarea" ng-model="data.text"></textarea>
+              <label for="icon_prefix2">Conte uma história sobre Thaís e Guilherme para aparecer aqui</label>
+            </div>
+            <div class="input-field col s5" style="top: -30px;">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="name" type="text" class="validate" ng-model="data.name">
+              <label for="name">Deixe seu nome</label>
+            </div>
+            <div>
+              <a ng-click="submit()" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+            </div>
+          </form>
+          <!-- Card Content -->
+        </div>
+      </div>
     </div>
   </div>
 
@@ -105,23 +115,61 @@
     <ul class="slides" style="opacity: 0;">
       <li><img src="imgs/slider/1.jpg" style="display: block; width: 100%;"></li>
       <li><img src="imgs/slider/2.jpg" style="display: block; width: 100%;"></li>
+      <li><img src="imgs/slider/3.jpg" style="display: block; width: 100%;"></li>
+      <li><img src="imgs/slider/4.jpg" style="display: block; width: 100%;"></li>
+      <li><img src="imgs/slider/5.jpg" style="display: block; width: 100%;"></li>
+      <li><img src="imgs/slider/6.jpg" style="display: block; width: 100%;"></li>
     </ul>
   </div>
 
-  <div id="ocasamento" class="section white scrollspy">
+  <div id="ocasamento" class="section white scrollspy" ng-controller="WeddingController">
     <div class="row container">
 	    <h2 class="header">O Casamento</h2>
-	    <p class="grey-text text-darken-3 lighten-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor at tellus nec porttitor. Suspendisse bibendum molestie purus id porttitor. Aliquam semper ante vel vehicula sollicitudin. Sed pharetra quam tempor orci mollis auctor. Cras turpis purus, ullamcorper rhoncus dui eu, sollicitudin rhoncus ipsum. Mauris vestibulum felis quis nibh accumsan efficitur. Curabitur a augue ante. Nulla semper bibendum augue. Ut et dolor velit. Vestibulum quis enim id leo ullamcorper placerat. Sed interdum, diam elementum ultrices aliquam, lacus lorem aliquam neque, in sagittis libero mauris quis nulla.</p>
-			<ul class="collapsible" data-collapsible="accordion">
-			  <li>
-			    <div class="collapsible-header"><i class="material-icons"></i>Traje</div>
-			    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-			  </li>
-			  <li>
-			    <div class="collapsible-header"><i class="material-icons"></i>Localização</div>
-			    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-			  </li>
-			</ul>
+      <p class="grey-text text-darken-3 lighten-3" style="text-align: justify;">No dia 17/10/2015, às 20 horas, um dia após o nosso aniversário de namoro de 10 anos, vai se realizar o nosso tão sonhado casamento. Todos vocês que de alguma maneira fazem parte de nossa longa história não poderiam faltar nesse momento tão especial.</p>
+      <ul class="collapsible popout" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header"><i class="material-icons">perm_identity</i>Traje</div>
+          <div class="collapsible-body"><p>Formal</p></div>
+        </li>
+        <li>
+          <div class="collapsible-header" ng-click="refreshMap()"><i class="material-icons">place</i>Localização</div>
+          <div class="collapsible-body">
+            <p>
+              <b>Red Lounge Buffet</b><br/>
+              Av. Dezessete de Agosto, 2513 - Parnamirim<br/>
+              Recife - Pernambuco, Brasil
+            </p>
+            <ui-gmap-google-map center='map.center' zoom='map.zoom' control='myGoogleMap'>
+              <ui-gmap-marker coords="map.marker" idkey="map.marker.id" >
+              </ui-gmap-marker>
+            </ui-gmap-google-map>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">payment</i>Cupom 99Taxis</div>
+          <div class="collapsible-body">
+            <img style="padding: 20px; text-align: center;" src="http://sites.icasei.com.br/userfiles/l/lellyerenatinho/imagens/local/bc7026cf-7067-41b2-be8a-98c23b513f89.jpg"/>
+            <p>
+            Fizemos uma parceria com o aplicativo 99Taxis e todos os nossos convidados terão R$20,00 de desconto em qualquer corrida.
+            <br/>
+            Regras do desconto: Cada cupom só poderá ser utilizado apenas uma única vez, no dia 17/10/2015, em Recife. Para usar o desconto, siga o passo a passo:
+            <br/>
+            1. Crie uma conta no PayPal (https://www.paypal.com/br/home) e cadastre o seu cartão de crédito.<br/>
+            2. Baixe o aplicativo 99Taxis no seu celular (iPhone, iPad, Android) ou caso já tenha, atualize o aplicativo, pois você precisa estar com a última versão do aplicativo instalada.<br/>
+            3. Na opção de pagamento escolher "posso pagar com" a opção "Cupom de Desconto".<br/>
+            4. Insira o código: <span style="font-family: times-new-roman;">thaiseguilherme</span><br/>
+            5. Agora é só confirmar o pedido e aproveitar seu desconto!<br/>
+            <br/>
+            Algumas dúvidas frequentes:<br/>
+            - Por quanto tempo o cupom é válido? O cupom será válido por 3 dias: no dia que antecede a cerimônia, no dia da cerimônia e no dia seguinte a cerimônia ao qual ele estará atrelado será realizado.<br/>
+            - Quantas vezes posso utilizar o mesmo cupom? Apenas uma única vez.<br/>
+            - E se o taxista não souber sobre o desconto, consigo utilizar o desconto mesmo assim? Sim, quando você solicitou o táxi com a opção de pagamento "Cupom de Desconto", o desconto já está habilitado e será aplicado automaticamente no final da corrida.<br/>
+            - E se eu pedir um táxi e no meio da corrida ficar sem bateria ou acesso à internet no meu celular, consigo utilizar o desconto? Sim, a confirmação do pagamento é feita no celular do taxista e seu desconto já está garantido na hora que você pediu o táxi.<br/>
+            - Posso pagar o restante da corrida com cartão na máquina de cartão? Não, o pagamento deve ser realizado pelo aplicativo, nos cartões de crédito cadastrados em sua conta PayPal.<br/>
+            - Posso pagar com cartão de débito? Não, apenas com cartão de crédito cadastrados em sua conta PayPal.
+          </p></div>
+        </li>
+      </ul>
 		</div>
 	</div>
 
@@ -131,62 +179,94 @@
   	<iframe width="853" height="480" src="//www.youtube.com/embed/NvjfH5QXgr0?rel=0;autohide=1" frameborder="0" allowfullscreen></iframe>
 	</div>
 
-	<div id="confirmepresenca" class="section white scrollspy">
+	<div id="confirmepresenca" class="section white scrollspy" ng-controller="RSVPController">
     <div class="row container">
-    <h2 class="header">Confirme Presença</h2>
+      <h2 class="header">Confirme Presença</h2>
 	    <form class="col s9">
-	      <div class="row">
+	      <div class="row" style="margin: 0;">
 	        <div class="input-field col s6">
 		        <i class="material-icons prefix">account_circle</i>
-	          <input id="first_name" type="text" class="validate">
-	          <label for="first_name">Nome Completo</label>
+	          <input id="name" type="text" class="validate" ng-model="data.name">
+	          <label for="name">Nome Completo</label>
 	        </div>
-	      </div>
-        <div>
-          <input id="password" type="checkbox" class="validate">
-          <label for="password">Irá ao casamento?</label>
+          <div class="col s6">
+            <div class="row">
+              <div class="col s3">
+                <label for="howmany">Acompanhantes?</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s4" style="top: -30px;">
+                <select id="howmany" class="browser-default" ng-model="data.count">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+          </div>
         </div>
-	      <button class="btn waves-effect waves-light" type="submit" name="action" style="margin-top: 20px;">
-	      	Enviar
-			  </button> 
+        <div class="row">
+          <div class="col s3">
+            <label for="rsvp">Irá ao casamento?</label>
+          </div>
+          <div class="col s3">
+            <div class="switch">
+              <label>
+                Não
+                <input id="rsvp" type="checkbox" ng-model="data.rsvp" checked>
+                <span class="lever"></span>
+                Sim
+              </label>
+            </div>
+          </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action" style="margin-top: 20px;" ng-click="submit()">
+          Enviar
+        </button>
 	    </form>
 	  </div>
 	</div>
 
 	<div class="fancy-border"></div>
 
-
-  <div id="presentes" class="scrollspy" ng-controller="GiftsController">
-    <div class="section white">
-      <div class="row container presents">
-        <h2 class="header">Lista de Casamento</h2>
-        <div class="row">
-          <div class="input-field col s12">
-            <select class="browser-default" ng-model="category">
-              <option value="" selected>Categoria (Todas)</option>
-              <option ng-repeat="category in categories"
-                      value="{{category}}">
-                {{category}}
-              </option>
-            </select>
-          </div>
+  <div id="presentes" class="section white scrollspy" ng-controller="GiftsController">
+    <div class="row container presents">
+      <h2 class="header">Lista de Casamento</h2>
+      <div class="row">
+        <div class="input-field col s12">
+          <select class="browser-default" ng-model="category">
+            <option value="" selected>Categoria (Todas)</option>
+            <option ng-repeat="category in categories"
+                    value="{{category}}">
+              {{category}}
+            </option>
+          </select>
         </div>
-        <div class="col s12 m3 giftcard" ng-repeat="g in gifts | filter:catFilt | orderBy:'value'">
-          <h5 class="light">{{g.name}}</h5>
-          <h5>R${{g.value}}</h5>
-          <div style="top: 100px; position: absolute;">
-            <div style="height: 220px;">
-              <img ng-src="{{g.url}}" style="max-width:100%; max-height:100%; padding-top: 20px">
-            </div>
-            <div ng-hide="g.bought">
-              <form action="https://pagseguro.uol.com.br/checkout/v2/payment.html" target="_blank" method="post">
-                <input type="hidden" name="code" value="{{g.code}}" />
-                <button type="submit" class="btn waves-effect waves-light modal-trigger">Comprar</button>
-              </form>
-            </div>
-            <div ng-show="g.bought">
-              <button class="btn waves-effect waves-light modal-trigger disabled">Comprado</button>
-            </div>
+      </div>
+      <div class="col s12 m3 giftcard" ng-repeat="g in gifts | filter:catFilt | orderBy:'value'">
+        <h5 class="light">{{g.name}}</h5>
+        <h5>R${{g.value}}</h5>
+        <div style="top: 100px; position: absolute;">
+          <div style="height: 220px;">
+            <img ng-src="{{g.url}}" style="max-width:100%; max-height:100%; padding-top: 20px">
+          </div>
+          <div ng-hide="g.bought">
+            <form action="https://pagseguro.uol.com.br/checkout/v2/payment.html" target="_blank" method="post">
+              <input type="hidden" name="code" value="{{g.code}}" />
+              <button type="submit" class="btn waves-effect waves-light modal-trigger">Comprar</button>
+            </form>
+          </div>
+          <div ng-show="g.bought">
+            <button class="btn waves-effect waves-light modal-trigger disabled">Comprado</button>
           </div>
         </div>
       </div>

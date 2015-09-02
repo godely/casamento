@@ -27,11 +27,26 @@ angular.module('AdminService', []).factory('AdminFactory', [
 			id: '@id',
 			password: '@password'
 		});
+		var AddRSVPAPI = $resource('/api/rsvp/add', {
+			name: '@name',
+			count: '@count',
+			rsvp: '@rsvp'
+		});
+		var GetRSVPSAPI = $resource('/api/rsvp/get');
+		var AddDepoimentAPI = $resource('/api/depo/add', {
+			name: '@name',
+			text: '@text'
+		});
+		var GetDepoimentsAPI = $resource('/api/depo/get');
 		return {
 			addGift: global.get.bind(null, AddGiftAPI),
 			getGifts: global.get.bind(null, GetGiftsAPI),
 			removeGift: global.get.bind(null, RemoveGiftAPI),
-			editGift: global.get.bind(null, EditGiftAPI)
+			editGift: global.get.bind(null, EditGiftAPI),
+			addRsvp: global.get.bind(null, AddRSVPAPI),
+			getRsvps: global.get.bind(null, GetRSVPSAPI),
+			addDepo: global.get.bind(null, AddDepoimentAPI),
+			getDepos: global.get.bind(null, GetDepoimentsAPI)
 		};
 	}
 ]);
