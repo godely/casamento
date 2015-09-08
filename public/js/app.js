@@ -3,6 +3,7 @@ var thaguiApp = angular.module('thaguiApp', [
 	'ui.bootstrap',
 	'ui-notification',
   'uiGmapgoogle-maps',
+  'timer',
 
 	'GiftsCtrl',
 	'AdminCtrl',

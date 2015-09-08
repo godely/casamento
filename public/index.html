@@ -25,6 +25,10 @@
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   <script src="bower_components/lodash/lodash.min.js"></script>
   <script src='bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
+  <script src="bower_components/momentjs/min/moment.min.js"></script>
+  <script src="bower_components/momentjs/min/locales.min.js"></script>
+  <script src="bower_components/humanize-duration/humanize-duration.js"></script>
+  <script src="bower_components/angular-timer/dist/angular-timer.min.js"></script>
   <script src="js/app.js"></script>
   <script src="js/controllers/AdminCtrl.js"></script>
   <script src="js/controllers/DepoCtrl.js"></script>
@@ -129,8 +133,9 @@
 
   <div id="ocasamento" class="section white scrollspy" ng-controller="WeddingController">
     <div class="row container">
-	    <h2 class="header">O Casamento</h2>
+      <h2 class="header">O Casamento</h2>
       <p class="grey-text text-darken-3 lighten-3" style="text-align: justify;">No dia 17/10/2015, às 20 horas, um dia após o nosso aniversário de namoro de 10 anos, vai se realizar o nosso tão sonhado casamento. Todos vocês que de alguma maneira fazem parte de nossa longa história não poderiam faltar nesse momento tão especial.</p>
+      <h5><timer end-time="1445122800000">Faltam {{days}} dias!</timer></h5><br/>
       <ul class="collapsible popout" data-collapsible="accordion">
         <li>
           <div class="collapsible-header"><i class="material-icons">perm_identity</i>Traje</div>
