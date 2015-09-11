@@ -54,7 +54,7 @@
       <li><a href="#thaiseguilherme">Thaís e Guilherme</a></li>
       <li><a href="#ocasamento">O Casamento</a></li>
       <li><a href="#confirmepresenca">Confirme Presença</a></li>
-      <li><a href="#presentes">Lista de Casamento</a></li>
+      <li><a href="#presentes">Sugestões de Presentes</a></li>
     </ul>
   </div>
 
@@ -127,7 +127,6 @@
       <li><img src="imgs/slider/3.jpg" style="display: block; width: 100%;"></li>
       <li><img src="imgs/slider/4.jpg" style="display: block; width: 100%;"></li>
       <li><img src="imgs/slider/5.jpg" style="display: block; width: 100%;"></li>
-      <li><img src="imgs/slider/6.jpg" style="display: block; width: 100%;"></li>
     </ul>
   </div>
 
@@ -196,8 +195,8 @@
 	      <div class="row" style="margin: 0;">
 	        <div class="input-field col s6">
 		        <i class="material-icons prefix">account_circle</i>
-	          <input id="name" type="text" class="validate" ng-model="data.name">
-	          <label for="name">Nome Completo</label>
+	          <input id="namee" type="text" class="validate" ng-model="data.name">
+	          <label for="namee">Nome Completo</label>
 	        </div>
           <div class="col s6">
             <div class="row">
@@ -250,7 +249,9 @@
 
   <div id="presentes" class="section white scrollspy" ng-controller="GiftsController">
     <div class="row container presents">
-      <h2 class="header">Lista de Casamento</h2>
+      <h2 class="header">Sugestões de Presentes</h2>
+      <p>Prima Casa - Loja Física</p>
+      <p>Ferreira Costa - Loja Física e <a target="_blank" href="https://presentes.ferreiracosta.com/ListaCasamentos/Lista.aspx?URL_Lista=Tha%C3%ADs_e_Guilherme">Lista Online</a></p>
       <div class="row">
         <div class="input-field col s12">
           <select class="browser-default" ng-model="category">
@@ -270,15 +271,46 @@
             <img ng-src="{{g.url}}" style="max-width:100%; max-height:100%; padding-top: 20px">
           </div>
           <div ng-hide="g.bought">
-            <form action="https://pagseguro.uol.com.br/checkout/v2/payment.html" target="_blank" method="post">
-              <input type="hidden" name="code" value="{{g.code}}" />
-              <button type="submit" class="btn waves-effect waves-light modal-trigger">Comprar</button>
-            </form>
+            <button type="submit" ng-click="buyGift(g)" class="btn waves-effect waves-light modal-trigger">Comprar</button>
           </div>
           <div ng-show="g.bought">
             <button class="btn waves-effect waves-light modal-trigger disabled">Comprado</button>
           </div>
         </div>
+      </div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>{{bgift.name}}</h4>
+        <p>R${{bgift.value}}</p>
+        <div class="row">
+          <div class="input-field col s8">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="name3" type="text" class="validate" ng-model="buy.name">
+            <label for="name3">Nome</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">mode_edit</i>
+            <textarea id="icon_prefix3" class="materialize-textarea" ng-model="buy.message"></textarea>
+            <label for="icon_prefix3">Deseja deixar algum recado?</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col offset-s4">
+            <form action="https://pagseguro.uol.com.br/checkout/v2/payment.html" target="_blank" method="post">
+              <input type="hidden" name="code" value="{{bgift.code}}" />
+              <button type="submit" ng-click="buyIt()" class="btn waves-effect waves-light modal-trigger">Comprar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+        <h4>Muito obrigado!</h4>
       </div>
     </div>
   </div>

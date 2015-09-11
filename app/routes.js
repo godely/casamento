@@ -1,6 +1,10 @@
 var Gift = require('./models/gift');
 var Depo = require('./models/depo');
 var RSVP = require('./models/rsvp');
+var Buyer = require('./models/buyer');
+
+var ObjectId = require('mongoose').Types.ObjectId;
+
 const PASS = 'guitha';
 
 module.exports = function(app) {
@@ -69,6 +73,18 @@ module.exports = function(app) {
     var depo = new Depo(query);
     depo.save(function(err, depo) {
       return res.json({msg: "Depoimento enviado para Thaís e Guilherme! Eles vão dar uma olhadinha e deve aparecer aqui no site logo logo :)"});
+    });
+  });
+
+  app.get('/api/buyer/add', function(req, res) {
+    var query = req.query;
+    var buyer = new Buyer({
+      name: query.name,
+      message: query.message,
+      gift: new ObjectId(query.gift)
+    });
+    buyer.save(function(err, obj) {
+      return res.json({});
     });
   });
 

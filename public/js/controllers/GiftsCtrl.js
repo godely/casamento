@@ -21,5 +21,24 @@ app.controller('GiftsController', [
     $scope.catFilt = function(value) {
       return $scope.category === "" || $scope.category === value.category;
     };
+
+    $scope.buyGift = function(gift) {
+      $scope.bgift = gift;
+      $('#modal1').openModal();
+    };
+
+    $scope.buy = {};
+
+    $scope.buyIt = function() {
+      admin.addBuyer({
+        name: $scope.buy.name,
+        message: $scope.buy.message,
+        gift: $scope.bgift._id
+      });
+      $scope.bgift = {};
+      $scope.buy = {};
+      $('#modal1').closeModal();
+      $('#modal2').openModal();
+    };
   }
 ]);

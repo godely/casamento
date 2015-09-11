@@ -38,6 +38,11 @@ angular.module('AdminService', []).factory('AdminFactory', [
 			text: '@text'
 		});
 		var GetDepoimentsAPI = $resource('/api/depo/get');
+		var AddBuyerAPI = $resource('/api/buyer/add', {
+			name: '@name',
+			message: '@message',
+			gift: '@gift'
+		});
 		return {
 			addGift: global.get.bind(null, AddGiftAPI),
 			getGifts: global.get.bind(null, GetGiftsAPI),
@@ -46,7 +51,8 @@ angular.module('AdminService', []).factory('AdminFactory', [
 			addRsvp: global.get.bind(null, AddRSVPAPI),
 			getRsvps: global.get.bind(null, GetRSVPSAPI),
 			addDepo: global.get.bind(null, AddDepoimentAPI),
-			getDepos: global.get.bind(null, GetDepoimentsAPI)
+			getDepos: global.get.bind(null, GetDepoimentsAPI),
+			addBuyer: global.get.bind(null, AddBuyerAPI)
 		};
 	}
 ]);
