@@ -300,10 +300,13 @@
         </div>
         <div class="row">
           <div class="col offset-s4">
-            <form action="https://pagseguro.uol.com.br/checkout/v2/payment.html" target="_blank" method="post">
-              <input type="hidden" name="code" value="{{bgift.code}}" />
-              <button type="submit" ng-click="buyIt()" class="btn waves-effect waves-light modal-trigger">Comprar</button>
-            </form>
+            <div ng-click="buyIt()">
+              <form action="https://pagseguro.uol.com.br/checkout/v2/payment.html" target="_blank" method="post">
+                <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+                <input type="hidden" name="code" value="{{bgift.code}}" />
+                <input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/209x48-comprar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+              </form>
+            </div>
           </div>
         </div>
       </div>
