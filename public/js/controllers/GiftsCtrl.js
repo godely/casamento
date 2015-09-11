@@ -14,6 +14,9 @@ app.controller('GiftsController', [
           if (c.category && c.category.length > 0 && p.indexOf(c.category) < 0) p.push(c.category);
           return p;
         }, []);
+        for (var i = 0; i < $scope.gifts.length; i++) {
+          $scope.gifts[i].value = $scope.gifts[i].value + ".00";
+        }
       });
     };
     getGifts();

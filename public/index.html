@@ -271,7 +271,13 @@
             <img ng-src="{{g.url}}" style="max-width:100%; max-height:100%; padding-top: 20px">
           </div>
           <div ng-hide="g.bought">
-            <button type="submit" ng-click="buyGift(g)" class="btn waves-effect waves-light modal-trigger">Comprar</button>
+            <!--<button type="submit" ng-click="buyGift(g)" class="btn waves-effect waves-light modal-trigger">Comprar</button>-->
+            <form target="_blank" action="https://pagseguro.uol.com.br/checkout/v2/cart.html?action=add" method="post">
+              <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+              <input type="hidden" name="itemCode" value="{{g.code}}" />
+              <button class="btn waves-effect waves-light modal-trigger">Comprar</button>
+            </form>
+            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
           </div>
           <div ng-show="g.bought">
             <button class="btn waves-effect waves-light modal-trigger disabled">Comprado</button>
@@ -302,12 +308,8 @@
           <div class="col offset-s4">
             <div ng-click="buyIt()">
               <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-              <form action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post">
-              <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-                <input type="hidden" name="code" value="{{bgift.code}}" />
-                <input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/120x53-comprar.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
-              </form>
-              <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+              <!-- Declaração do formulário -->  
+              
             </div>
           </div>
         </div>
@@ -374,3 +376,5 @@
 	</script>
 </body>
 </html>
+
+http://code.google.com/p/pagsegurodotnet/
