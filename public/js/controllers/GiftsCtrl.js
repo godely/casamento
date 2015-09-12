@@ -27,7 +27,7 @@ app.controller('GiftsController', [
 
     $scope.buyGift = function(gift) {
       $scope.bgift = gift;
-      $('#modal1').openModal();
+      $('#modal1-' + gift.code).openModal();
     };
 
     $scope.buy = {};
@@ -40,8 +40,8 @@ app.controller('GiftsController', [
       });
       $scope.bgift = {};
       $scope.buy = {};
-      $('#modal1').closeModal();
-      $('#modal2').openModal();
+      $('#modal1-' + gift.code).closeModal();
+      $('#modal2-' + gift.code).openModal();
     };
   }
 ]);

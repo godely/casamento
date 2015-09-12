@@ -271,13 +271,11 @@
             <img ng-src="{{g.url}}" style="max-width:100%; max-height:100%; padding-top: 20px">
           </div>
           <div ng-hide="g.bought">
-            <!--<button type="submit" ng-click="buyGift(g)" class="btn waves-effect waves-light modal-trigger">Comprar</button>-->
-            <form target="_blank" action="https://pagseguro.uol.com.br/checkout/v2/cart.html?action=add" method="post">
-              <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+            <button type="submit" ng-click="buyGift(g)" class="btn waves-effect waves-light modal-trigger">Comprar</button>
+            <!--<form target="_blank" action="https://pagseguro.uol.com.br/checkout/v2/cart.html?action=add" method="post">
               <input type="hidden" name="itemCode" value="{{g.code}}" />
               <button class="btn waves-effect waves-light modal-trigger">Comprar</button>
-            </form>
-            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+            </form>-->
           </div>
           <div ng-show="g.bought">
             <button class="btn waves-effect waves-light modal-trigger disabled">Comprado</button>
@@ -285,39 +283,42 @@
         </div>
       </div>
     </div>
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-        <h4>{{bgift.name}}</h4>
-        <p>R${{bgift.value}}</p>
-        <div class="row">
-          <div class="input-field col s8">
-            <i class="material-icons prefix">account_circle</i>
-            <input id="name3" type="text" class="validate" ng-model="buy.name">
-            <label for="name3">Nome</label>
+    <div ng-repeat="g in gifts">
+      <!-- Modal Structure -->
+      <div id="{{'modal1-' + g.code }}" class="modal">
+        <div class="modal-content">
+          <h4>{{g.name}}</h4>
+          <p>R${{g.value}}</p>
+          <div class="row">
+            <div class="input-field col s8">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="name3" type="text" class="validate" ng-model="buy.name">
+              <label for="name3">Nome</label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <i class="material-icons prefix">mode_edit</i>
-            <textarea id="icon_prefix3" class="materialize-textarea" ng-model="buy.message"></textarea>
-            <label for="icon_prefix3">Deseja deixar algum recado?</label>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">mode_edit</i>
+              <textarea id="icon_prefix3" class="materialize-textarea" ng-model="buy.message"></textarea>
+              <label for="icon_prefix3">Deseja deixar algum recado?</label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col offset-s4">
-            <div ng-click="buyIt()">
-              <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-              <!-- Declaração do formulário -->  
-              
+          <div class="row">
+            <div class="col offset-s4">
+              <div ng-click="buyIt()">
+                <form target="_blank" action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post">
+                  <input type="hidden" name="code" value="{{g.code}}" />
+                  <button class="btn waves-effect waves-light modal-trigger">Comprar</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div id="modal2" class="modal">
-      <div class="modal-content">
-        <h4>Muito obrigado!</h4>
+      <div id="{{'modal2-' + g.code }}" class="modal">
+        <div class="modal-content">
+          <h4>Muito obrigado!</h4>
+        </div>
       </div>
     </div>
   </div>
@@ -377,4 +378,3 @@
 </body>
 </html>
 
-http://code.google.com/p/pagsegurodotnet/
