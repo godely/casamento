@@ -69,34 +69,35 @@
         Durante esses (quase) dez anos juntos, fomos abençoados com muitas alegrias, a maior de todas aconteceu em Outubro de 2014, quando fui pedida em casamento num lindo pôr do sol em Olinda. A emoção foi tão grande que mal consegui dizer sim. Agora falta bem pouquinho para realização de mais um sonho: mais um sim nas nossas vidas. <br/>
         É com muito amor e felicidade que vamos comemorar nossos 10 anos de namoro e as primeiras horinhas de casados ao lado de vocês, em uma cerimônia intimista para nossos familiares, amigos próximos, e pessoas queridas! Obrigada por fazerem parte de nossa história. Esperamos muito a presença de todos! Guilherminho, eu te amo, obrigada por tudo!
       </p>
-      
-      <!--
-      <div class="row depoiments" style="visibility: hidden;">
-	      <div class="col s12 m4">
-	        <div class="card-panel teal">
-	          <span class="white-text">Depoimento 1. I am a very simple card. I am good at containing small bits of information.
-	          I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-	          </span>
-	        </div>
-	      </div>
-	      <div class="col s12 m4">
-	        <div class="card-panel teal">
-	          <span class="white-text">Depoimento 2. I am a very simple card. I am good at containing small bits of information.
-	          I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-	          </span>
-	        </div>
-	      </div>
-	      <div class="col s12 m4">
-	        <div class="card-panel teal">
-	          <span class="white-text">Depoimento 3. I am a very simple card. I am good at containing small bits of information.
-	          I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-	          </span>
-	        </div>
-	      </div>
-	    </div>
-      -->
 
-        <div class="card" ng-controller="DepoController">
+      <div ng-controller="DepoController">
+        <div class="row depoiments" style="visibility: hidden;">
+          <div class="col s12 m4 card" ng-if="depos[depoInd[0]]">
+            <div class="card-content">
+              {{depos[depoInd[2]].text}}
+            </div>
+            <div class="card-action">
+              -&nbsp;{{depos[depoInd[2]].name}}
+            </div>
+          </div>
+          <div class="col s12 m4 card" ng-if="depos[depoInd[1]]">
+            <div class="card-content">
+              {{depos[depoInd[2]].text}}
+            </div>
+            <div class="card-action">
+              -&nbsp;{{depos[depoInd[2]].name}}
+            </div>
+          </div>
+          <div class="col s12 m4 card" ng-if="depos[depoInd[2]]">
+            <div class="card-content">
+              {{depos[depoInd[2]].text}}
+            </div>
+            <div class="card-action">
+              -&nbsp;{{depos[depoInd[2]].name}}
+            </div>
+          </div>
+        </div>
+        <div class="card">
           <form>
             <div class="input-field" style="padding: 20px;">
               <i class="material-icons prefix">mode_edit</i>
@@ -127,6 +128,8 @@
       <li><img src="imgs/slider/3.jpg" style="display: block; width: 100%;"></li>
       <li><img src="imgs/slider/4.jpg" style="display: block; width: 100%;"></li>
       <li><img src="imgs/slider/5.jpg" style="display: block; width: 100%;"></li>
+      <li><img src="imgs/slider/6.jpg" style="display: block; width: 100%;"></li>
+      <li><img src="imgs/slider/7.jpg" style="display: block; width: 100%;"></li>
     </ul>
   </div>
 

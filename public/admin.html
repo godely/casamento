@@ -42,9 +42,94 @@
 </head>
 <body ng-app="thaguiApp">
 	<div ng-controller="AdminController">
+
+  <div class="section white scrollspy">
+    <div class="row container">
+      <h2 class="header">Depoimentos</h2>
+      <table class="striped">
+        <thead>
+          <tr>
+              <th>Nome</th>
+              <th>Mensagem</th>
+              <th>Ativo?</th>
+              <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="p in depos">
+            <td>{{p.name}}</td>
+            <td>{{p.text}}</td>
+            <td>
+              <div class="switch">
+                <label>
+                  <input type="checkbox" ng-change="updateDepo(p)" ng-model="p.active" checked>
+                  <span class="lever"></span>
+                </label>
+              </div>
+            </td>
+            <td><a style="cursor:pointer;" ng-click="deleteDepo(p._id)"><i class="material-icons">delete</i></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fancy-border"></div>
+
+  <div class="section white scrollspy">
+    <div class="row container">
+      <h2 class="header">Presenças Confirmadas</h2>
+      <table class="striped">
+        <thead>
+          <tr>
+              <th>Nome</th>
+              <th>Acompanhantes</th>
+              <th>Confirmado?</th>
+              <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="p in rsvps">
+            <td>{{p.name}}</td>
+            <td>{{p.count}}</td>
+            <td>{{p.rsvp ? 'Sim' : 'Não'}}</td>
+            <td><a style="cursor:pointer;" ng-click="deleteRSVP(p._id)"><i class="material-icons">delete</i></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fancy-border"></div>
+
+    <div class="section white scrollspy">
+    <div class="row container">
+      <h2 class="header">Compras</h2>
+      <table class="striped">
+        <thead>
+          <tr>
+              <th>Nome</th>
+              <th>Mensagem</th>
+              <th>Presente</th>
+              <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="buyer in buyers">
+            <td>{{buyer.name}}</td>
+            <td>{{buyer.message}}</td>
+            <td>{{giftName[buyer.gift]}}</td>
+            <td><a style="cursor:pointer;" ng-click="deleteBuyer(buyer._id)"><i class="material-icons">delete</i></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fancy-border"></div>
     <div class="section white scrollspy">
       <div class="row container">
-      <h2 class="header">Adicione um Presente</h2>
+        <h2 class="header">Adicione um Presente</h2>
         <form>
           <div class="row">
             <div class="col s6">

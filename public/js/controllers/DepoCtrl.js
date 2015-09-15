@@ -1,13 +1,24 @@
 var app = angular.module('DepoCtrl', []);
 app.controller('DepoController', [
 	'$scope',
+  '$interval',
   'Notification',
   'AdminFactory',
-	function($scope, Notification, admin) {
+	function($scope, $interval, Notification, admin) {
     $scope.data = {
       name: '',
       text: ''
     };
+    $scope.depos = [];
+    $scope.depoInd = [0,1,2];
+
+    $interval(function() {
+      if ($scope.depos.length > 3) {
+        for (var i = 0; i < 3; i++) {
+          $scope.depoInd[i] = ($scope.depoInd[i]+3) % $scope.depos.length;
+        }
+      }
+    }, 30000);
     
     $scope.submit = function() {
       var data = $scope.data;
@@ -20,6 +31,19 @@ app.controller('DepoController', [
         });
       }
     };
+
+    function shuffle(o){
+      for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+      return o;
+    }
+
+    var getActiveDepos = function() {
+      admin.getActiveDepos().then(function(data) {
+        $scope.depos = shuffle(data.depos);
+
+      });
+    }
+    getActiveDepos();
 
 	}
 ]);

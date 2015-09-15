@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 var depoSchema = mongoose.Schema({
   name: String,
-  text: String
+  text: String,
+  active: {type: Boolean, default: false}
 });
 
 // methods ======================
