@@ -72,28 +72,31 @@
 
       <div ng-controller="DepoController">
         <div class="row depoiments" style="visibility: hidden;">
-          <div class="col s12 m4 card" ng-if="depos[depoInd[0]]">
-            <div class="card-content">
-              {{depos[depoInd[2]].text}}
-            </div>
-            <div class="card-action">
-              -&nbsp;{{depos[depoInd[2]].name}}
-            </div>
-          </div>
-          <div class="col s12 m4 card" ng-if="depos[depoInd[1]]">
-            <div class="card-content">
-              {{depos[depoInd[2]].text}}
-            </div>
-            <div class="card-action">
-              -&nbsp;{{depos[depoInd[2]].name}}
+          <div class="col s12 m4" ng-if="depos[depoInd[0]]">
+            <div class="card-panel teal">
+              <span class="white-text">
+                {{depos[depoInd[0]].text}}
+                <br/>
+                -&nbsp;{{depos[depoInd[0]].name}}
+              </span>
             </div>
           </div>
-          <div class="col s12 m4 card" ng-if="depos[depoInd[2]]">
-            <div class="card-content">
-              {{depos[depoInd[2]].text}}
+          <div class="col s12 m4" ng-if="depos[depoInd[1]]">
+            <div class="card-panel teal">
+              <span class="white-text">
+                {{depos[depoInd[1]].text}}
+                <br/>
+                -&nbsp;{{depos[depoInd[1]].name}}
+              </span>
             </div>
-            <div class="card-action">
-              -&nbsp;{{depos[depoInd[2]].name}}
+          </div>
+          <div class="col s12 m4" ng-if="depos[depoInd[2]]">
+            <div class="card-panel teal">
+              <span class="white-text">
+                {{depos[depoInd[2]].text}}
+                <br/>
+                -&nbsp;{{depos[depoInd[2]].name}}
+              </span>
             </div>
           </div>
         </div>
